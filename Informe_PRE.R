@@ -50,9 +50,32 @@ summary(MT, fit.measures = TRUE, standardized = TRUE)
 fitMeasures(MT)
 lavaanPlot(MT,stand = TRUE,stars = "regression",covs = TRUE,coefs = TRUE)
 ME<-fa(I_PRE, nfactor=3, cor="poly", fm="minres", rotate = "oblimin")
+ME
 fa.diagram(ME)
-# Se eliminan los items 1,6,13, 14 y 15
-I_PRE_2 <- I_PRE[, !(names(I_PRE) %in% c("ICC1","ICC6", "ICC13", "ICC14", "ICC15"))]
+I_PRE_2<- I_PRE[, !(names(I_PRE) %in% c("ICC1", "ICC13", "ICC15"))]
 N_FACTORS(I_PRE_2)
-EFA(I_PRE_2,2,method= "ULS",rotation = "oblimin")
-irt.fa(I_PRE_2,nfactors = 2, fm="minres",rotate = "oblimin")
+ME_2<- fa(I_PRE_2, nfactor = 2, cor = "poly", fm = "minres", rotate = "oblimin") #NO AJUSTO
+ME_3<- fa(I_PRE_2, nfactor = 3, cor = "poly", fm = "minres", rotate = "oblimin")
+ME_2
+ME_3
+fa.diagram(ME_2)
+fa.diagram(ME_3)
+ICC_ME_F1<- I_PRE_2[, c("ICC2","ICC3","ICC5","ICC14")]
+ICC_ME_F2<- I_PRE_2[, c("ICC7","ICC10","ICC11","ICC12")]
+ICC_ME_F3<- I_PRE_2[, c("ICC4","ICC6","ICC8", "ICC9")]
+alpha(ICC_ME_F1)
+alpha(ICC_ME_F2)
+alpha(ICC_ME_F3)
+I_PRE_3 <- I_PRE_2[, !(names(I_PRE_2) %in% "ICC4")]
+N_FACTORS(I_PRE_3)
+ME_4<- fa(I_PRE_3, nfactors = 2, cor = "poly", fm = "minres", rotate = "oblimin")
+ME_5<- fa(I_PRE_3, nfactors = 3, cor = "poly", fm = "minres", rotate = "oblimin")
+fa.diagram(ME_4)
+fa.diagram(ME_5)           
+ICC_ME2_F1<- I_PRE_2[, c("ICC2","ICC3","ICC5","ICC14")]
+ICC_ME2_F2<- I_PRE_2[, c("ICC7","ICC10","ICC11","ICC12")]
+ICC_ME2_F3<- I_PRE_2[, c("ICC6","ICC8", "ICC9")]
+alpha(ICC_ME2_F1)
+alpha(ICC_ME2_F2)
+alpha(ICC_ME2_F3)
+reliability(ICC_ME2_F3)
