@@ -1,3 +1,4 @@
+#Paquetes
 library(readxl)
 library(mokken)
 library(summarytools)
@@ -6,7 +7,11 @@ library(lavaan)
 library(lavaanPlot)
 library(mirt)
 library(psych)
-ICC_PRE <- read_excel("ICC_PRE.xlsx",na = "999")
+
+
+#Bases de datos en el repositorio 
+ICC_DEV <- read_excel("ICC_DEV.xlsx") #Base de datos de desarrollo
+ICC_PRE <- read_excel("ICC_PRE.xlsx",na = "999") 
 ICC_MID <- read_excel("ICC_MID.xlsx", na = "999")
 ICC_END <- read_excel("ICC_END.xlsx", na = "999")
 # Recodificación de los items
